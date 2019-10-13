@@ -4,11 +4,10 @@
  */
 class CompositeComponent {
   constructor(element, publicInstance) {
-    // 这里触发事件 componentWillMount
     this.publicInstance = publicInstance;
     this.element = element;
     this.renderedElement = null;
-    this.node = null;
+    this.node = null; 
   }
 
   /** 
@@ -40,8 +39,7 @@ class CompositeComponent {
   /**
    * 更新元素
    */
-  updateComponent(nextElement) {
-    // 其实这里可以不需要，因为在 host 里面已经判断了，直接使用 receiveComponent
+  updateComponent(nextElement) { 
     // 判断元素类型
     if (nextElement.type === this.renderedElement.type) {
       // 一样才更新
@@ -140,11 +138,8 @@ class DomComponent {
 
   updateChildren(nextElement) {
     /**
-     * 这里要思考：
-     * 1. 怎么找出之前的元素
-     * 
      * 主要功能：
-     * 1. 找出更新的，如位置变动，那这里就需要新旧两个能对比
+     * 1. 找出更新的，如位置变动，属性值变化
      * 2. 找出增加的
      * 3. 找出删除的
      * 
@@ -154,6 +149,8 @@ class DomComponent {
      */
     let mountImages = [];
     let removeNodes = [];
+    
+    // 得到一棵新的 vdom tree
     let nextChildren = this._updateChildrenInstance(nextElement, mountImages, removeNodes);
 
     /**

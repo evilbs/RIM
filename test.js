@@ -129,3 +129,12 @@ class Footer extends React.Component {
 }
 
 React.render(App, document.getElementById('container'));
+
+
+// function render(){
+//   return <App>
+//     <Head></Head>
+//     <Content></Content>
+//     <Footer></Footer>
+//   </App>
+// }
