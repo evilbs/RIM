@@ -2,7 +2,7 @@
 通过 ES6 实现的一套 react 类库，仅用于学习与交流，深入了解 React 机制，请勿用于生产环境，哈哈。
 
 演示地址：
-[link](http://39.97.248.105:8088)
+[link](http://www.ygyblogs.com/demos/rim/index.html)
 
 
 # 背景
