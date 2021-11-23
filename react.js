@@ -1,4 +1,12 @@
 /******************************* react 核心 *******************************/
+
+/**
+ * 内部渲染组件：这个实例为 react 内部负责渲染我们元素的，主要有三类
+ * 1. 自定义组件渲染：CompositeComponent 负责，用于渲染我们写的自定义 react 组件.
+ * 2. Dom 组件渲染： DomComponent 负责，用于渲染 div/span/a 等这种 dom 元素，他的特点是有一个或多个孩子。
+ * 3. Text 组件渲染：TextComponent 负责，用于渲染 文本元素
+ */
+
 /**
  * 自定义组件
  */
@@ -16,8 +24,21 @@ class CompositeComponent {
   mountComponent(container) {
     this.node = container;
 
+    /**
+     * 以下三部就实现了一个递归
+     * 
+     * 1. 获取「自定义组件」 render 出来的结果
+     * 写自定义组件时都要写一个 render 函数，并返回这个自定义组件要渲染的元素。
+     * */ 
     let renderedElement = this.publicInstance.render();
+
+    /**
+     * 2. 初始化为 react 「内部渲染组件」
+     */
     const renderedInstance = instanceComponent(renderedElement);
+    /**
+     * 3. 调用「内部渲染组件」的 mountComponent 方法
+     */
     const image = renderedInstance.mountComponent(container);
 
     this.container = container;
@@ -70,8 +91,11 @@ class CompositeComponent {
  */
 class DomComponent {
   constructor(element) {
+    // virtual dom element
     this.element = element;
+    // 孩子节点
     this.childrenInstances = {};
+    // 内存记录的 dom 元素
     this.node = null;
   }
 
